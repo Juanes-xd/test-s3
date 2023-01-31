@@ -29,7 +29,8 @@ export async function uploadFile(file) {
     Body: stream,
   };
   const command = new PutObjectCommand(uploadParams);
-  return await client.send(command);
+  await client.send(command);
+  return await getFileURL(uploadParams.Key)
 }
 
 export async function getFiles() {
